@@ -1,5 +1,7 @@
 import * as EventFactory from './EventFactory.js';
-
+import {
+  searchManager
+} from './SearchManager.js';
 const event = EventFactory.createEvent(1, 2, 3, 4, 5, 6);
 /* events.push(person);
 const person2 = EventFactory.createEvent('pesho', 2, 3, 4, 5, 6);
@@ -16,3 +18,17 @@ if (!localStorage.getItem(!'events')) {
 } else {
   console.log(JSON.parse(localStorage.getItem('events')));
 }
+// get the elements, which user provided in html
+const searchDropDown = document.getElementById("searchDropDown");
+const searchTextElement = document.getElementById("searchString");
+
+searchDropDown.addEventListener("click", function (ev) {
+  const searchCriteria = ev.target.dataset.value;
+  const searchText = searchTextElement.value;
+  const foundEvents = searchManager.find(searchText, searchCriteria);
+  // check if we don't find nothing
+  if (foundEvents.length === 0) {
+    // This log will be on alert message
+    console.log('No matches found!')
+  }
+});
