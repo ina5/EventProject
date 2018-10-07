@@ -5,6 +5,7 @@ const createEvent = function (title, description, type, picture, location, dateT
 
     return {
         id,
+        title,
         description,
         type,
         picture,
