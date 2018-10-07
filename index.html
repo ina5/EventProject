@@ -17,22 +17,38 @@
         </div>
         <div class="search">
             <input type="text" placeholder="Search..">
+            <div class="searchButton">
+                <button type="submit"><i class="еvent-search">
+                        <img src='./images/magnifier.png'>
+                    </i></button>
+            </div>
         </div>
-        <!-- Tab links -->
 
-        <div class="topnav">
-            <a class="activeTab" href="#today">Today</a>
-            <a href="#past">Past</a>
-            <a href="#future">Future</a>
-        </div>
-        <div class="container">
-            <ul class="list">
-                <li></li>
-            </ul>
-
+        <div class="event-place">
+            <div class="topnav">
+                <ul>
+                    <li class="active-tab">
+                        <a href="#today">Today</a>
+                    </li>
+                    <li class="inactive-tab">
+                        <a href="#past">Past</a>
+                    </li>
+                    <li class="inactive-tab">
+                        <a href="#future">Future</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="container">
+                <ul class="event-list">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
         </div>
     </div>
-    
+
     <script src="./js/main.js" type='module'></script>
 </body>
+
 </html>
