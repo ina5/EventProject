@@ -5,6 +5,10 @@ import {
 import {
   searchManager
 } from './SearchManager.js';
+import {
+  displayEventsOnTodayTab,
+  displayEventsOnCurrentTab,
+} from './EventVisualizer.js';
 const event = EventFactory.createEvent(1, 2, 3, 4, 5, 6);
 /* events.push(person);
 const person2 = EventFactory.createEvent('pesho', 2, 3, 4, 5, 6);
@@ -38,58 +42,5 @@ searchDropDown.addEventListener("click", function (ev) {
   }
 });
 
-
-//TO DO:: DO IT IN ANOTHER MODULE
-
-//TODO: change the return condition (compare to current date and not
-// the magic number for month 10)
-
-const eventsToday = EventFactory.all()
-.filter(event => {
-  return +event.dateTime.split(' ')[0].split('/')[1] === 10;
-});
-
-const eventsPast = EventFactory.all()
-.filter(event => {
-  return +event.dateTime.split(' ')[0].split('/')[1] < 10;
-});
-
-const eventsFuture = EventFactory.all()
-.filter(event => {
-  return +event.dateTime.split(' ')[0].split('/')[1] > 10;
-});
-
-eventsToday.forEach(event => {
-//log(event.title);
-$(".event-list").append(`<li> ${event.title} </li>`).show();
-});
-
-$(".topnav li").on('click', function () {
-//log($(this).html());
-
-//make the last active -> inactive
-$(this).parent().find("li").removeClass("active-tab inactive-tab").addClass("inactive-tab");
-
-//make clicked one active
-$(this).removeClass("inactive-tab").addClass("active-tab");
-
-//update displayed events
-const toDisplayStatus = $(this).find('a').attr('href').slice(1);
-$(".event-list").empty();
-if (toDisplayStatus === 'today') {
-  eventsToday.forEach(event => {
-    //log(event.title);
-    $(".event-list").append(`<li> ${event.title} </li>`).show();
-  });
-} else if (toDisplayStatus === 'past') {
-  eventsPast.forEach(event => {
-    //log(event.title);
-    $(".event-list").append(`<li> ${event.title} </li>`).show();
-  });
-} else {
-  eventsFuture.forEach(event => {
-    //log(event.title);
-    $(".event-list").append(`<li> ${event.title} </li>`).show();
-  });
-}
-});
+displayEventsOnTodayTab();
+displayEventsOnCurrentTab();
