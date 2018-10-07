@@ -1,5 +1,6 @@
 body {
     background-image: url('../images/cosmos-background.jpg');
+    background-size: cover;
     text-align: center;
 }
 
@@ -91,6 +92,8 @@ body {
 
 .container {
     text-align: center;
+    overflow: auto;
+    max-height: 750px;
 }
 
 
