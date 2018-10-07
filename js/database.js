@@ -91,5 +91,4 @@ const initialEvents = function () {
   return JSON.parse(localStorage.getItem('events'));
 };
 const eventsLocalStorage = initialEvents();
-export default
-eventsLocalStorage;
+export default eventsLocalStorage;

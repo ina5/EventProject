@@ -1,5 +1,5 @@
 const log = function (msg) {
-  alert(msg);
+  console.log(msg);
 };
 export {
   log,
