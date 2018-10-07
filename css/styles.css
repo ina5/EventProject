@@ -56,6 +56,12 @@ body {
 .container {
     border: 1px solid white;
 }
+/* this is how I get the three divs in one line */
+.containerOne {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    text-align: center;
+}
 
 .list {
     list-style: none;
@@ -63,21 +69,67 @@ body {
 
 .search {
     margin-bottom: 10px;
-    width: 650px;
+    width: 550px;
     height: 25px;
     margin: 20px auto;
     padding: 13px;
 }
 
+.dropdown {
+    margin-bottom: 10px;
+    width: 12px;
+    height: 25px;
+    margin: 20px auto;
+    padding: 13px; 
+}
+
+.dropbtn:hover {
+    cursor: pointer;
+}
+
+.dropbtn {
+    width: 100px;
+    height: 25px;
+    font-size: 15px; 
+    font-weight: bold;
+}
+.dropdown:hover {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 12px;
+    background-color: whitesmoke
+
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 12px;
+    text-decoration: none;
+    display: block;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: oblique;
+    font-weight: bold;
+}
+
+.dropdown-content a:hover {background-color: #e4271a;}
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropbtn {background-color:whitesmoke;}
+
 .search input {
     width: 91%;
     height: 100%;
-    float: left;
-}
+ }
 
 .searchButton {
-    float: right;
-    border: 1px solid white;
+    margin-bottom: 10px;
+    width: 5px;
+    height: 25px;
+    margin: 20px auto;
+    padding: 13px;
 }
 
 .searchButton button img {
