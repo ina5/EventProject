@@ -29,20 +29,6 @@ const all = function () {
   return eventsLocal;
 };
 
-<<<<<<< HEAD
-=======
-    return {
-        id,
-        title,
-        description,
-        type,
-        picture,
-        location,
-        dateTime
-    }
-}
->>>>>>> e0f52ebbd5294775a9d55a6d6b5f8c61dcff2e9c
-
 export {
   createEvent,
   all,
