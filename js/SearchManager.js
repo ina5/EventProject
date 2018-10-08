@@ -3,8 +3,8 @@ import eventsLocalStorage from './database.js';
 // Create new Object with different properties
 const searchManager = {
   // seach a string from text box by criteria from drop down
-    find: function(searchText, typeDd) {
-    if (searchText === '' || typeDd === undefined) {
+  find: function(searchText, typeDd) {
+    if (searchText === '' || !typeDd) {
       throw new Error('No valid data provided');
     }
     return eventsLocalStorage
