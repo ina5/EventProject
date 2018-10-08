@@ -23,7 +23,7 @@ const eventsFuture = EventFactory.all()
     });
 
 const includeEventInList = function (event) {
-    $(".event-list").append(`<li> ${event.title} </li>`).show(); 
+    $(".event-list").append(`<li> ${event.title} </li>`).show();
 }
 
 const displayEventsOnTodayTab = function () {
@@ -43,10 +43,10 @@ const displayEventsOnCurrentTab = function () {
                 includeEventInList(event);
             });
         } else {
-            tabStatus.forEach(event => {
+            eventsFuture.forEach(event => {
                 includeEventInList(event);
             });
-        }
+        };
     }
 
     $(".topnav li").on('click', function () {

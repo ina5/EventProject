@@ -1,9 +1,9 @@
 import * as EventFactory from './EventFactory.js';
 import {
-  log
+  log,
 } from './logger.js';
 import {
-  searchManager
+  searchManager,
 } from './SearchManager.js';
 import {
   displayEventsOnTodayTab,
@@ -16,7 +16,7 @@ console.log(person);
 events.push(person);
 console.log(person2); */
 
-//EventFactory.addEventToDB(event);
+// EventFactory.addEventToDB(event);
 
 // Display an array with our events in
 
@@ -28,17 +28,17 @@ if (!localStorage.getItem(!'events')) {
 
 
 // get the elements, which user provided in html
-const searchDropDown = document.getElementById("searchDropDown");
-const searchTextElement = document.getElementById("searchString");
+const searchDropDown = document.getElementById('searchDropDown');
+const searchTextElement = document.getElementById('searchString');
 
-searchDropDown.addEventListener("click", function (ev) {
+searchDropDown.addEventListener('click', function(ev) {
   const searchCriteria = ev.target.dataset.value;
   const searchText = searchTextElement.value;
   const foundEvents = searchManager.find(searchText, searchCriteria);
   // check if we don't find nothing
   if (foundEvents.length === 0) {
     // This log will be on alert message
-    log('No matches found!')
+    log('No matches found!');
   }
 });
 

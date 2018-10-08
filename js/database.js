@@ -38,7 +38,7 @@ const events = [
   {
     id: 5,
     title: 'Our Big French Wedding',
-    description: "A comedy theatre play. Its plot revolves around the story of a member of the parliament who is trying to boost his rating by organizing his own and his son's wedding in one day.",
+    description: 'A comedy theatre play. Its plot revolves around the story of a member of the parliament who is trying to boost his rating by organizing his own and his son\'s wedding in one day.',
     type: 'culture',
     picture: './../images/my-big-french-wedding.jpg',
     location: 'Satirical Theatre Aleko Konstantinov',
@@ -84,7 +84,7 @@ const events = [
 
 
 // Display an array with our events in Local Storage
-const initialEvents = function () {
+const initialEvents = function() {
   if (!localStorage.getItem('events')) {
     localStorage.setItem('events', JSON.stringify(events));
   }

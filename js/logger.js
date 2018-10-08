@@ -1,4 +1,4 @@
-const log = function (msg) {
+const log = function(msg) {
   console.log(msg);
 };
 export {
