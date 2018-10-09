@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./styleCreateEvent.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="create-form">
+        <h1>Create</h1>
+        <p>Please fill in this form to create an event</p>
+        <p><label for="title">
+                <b>Title</b>
+            </label>
+            <input class="create-input" type="text" name="title" required></p>
+        <p>
+            <label for="criteria">
+                <b>Choose a category</b>
+            </label>
+            <select class="create-input">
+                <option value="music">Music</option>
+                <option value="culture">Culture</option>
+                <option value="sport">Sport</option>
+                <option value="business">Business</option>
+            </select>
+        </p>
+        <p> <label for="description">
+                <b>Description</b>
+            </label>
+            <input class="create-input" type="text" name="description" required></p>
+        <p><label for="location">
+            <b>Location</b>
+        </label>
+        <input class="create-input" type="text" name="location" required></p>
+    <p>  <label for="time">
+            <b>When</b>
+        </label>
+        <input class="create-input" type="datetime" name="time" required></p>
+        <button type="submit" class="createbtn">Create</button>
+    </div>
+</div>
+</body>
+</html>

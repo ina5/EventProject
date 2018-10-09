@@ -3,7 +3,7 @@ import {
   log,
 } from './logger.js';
 import {
-  searchManager,
+  find,
 } from './SearchManager.js';
 import {
   displayEventsOnTodayTab,
@@ -34,11 +34,14 @@ const searchTextElement = document.getElementById('searchString');
 searchDropDown.addEventListener('click', function(ev) {
   const searchCriteria = ev.target.dataset.value;
   const searchText = searchTextElement.value;
-  const foundEvents = searchManager.find(searchText, searchCriteria);
+  const foundEvents = find(searchText, searchCriteria);
   // check if we don't find nothing
   if (foundEvents.length === 0) {
     // This log will be on alert message
     log('No matches found!');
+  }
+  else{
+    log(foundEvents);
   }
 });
 

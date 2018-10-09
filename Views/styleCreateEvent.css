@@ -1,0 +1,38 @@
+/* this is Get from basic .css file */
+.container {
+    text-align: center;
+    overflow: auto;
+    max-height: 750px;
+}
+
+/* styling for the CreateForm */
+.create-input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.createbtn {
+    width: 100%;
+    background-color: #178793;
+    font-weight: bold;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.createbtn:hover {
+    background-color: #03626d;
+}
+
+.create-form {
+    border-radius: 5px;
+    padding: 20px;
+}
