@@ -1,0 +1,188 @@
+body {
+    background-image: url('../images/cosmos-background.jpg');
+    background-size: cover;
+    text-align: center;
+}
+
+#wrapper {
+    width: 960px;
+    margin: 0px auto;
+    border: 1px solid white;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 15px;
+    text-decoration: none;
+    font-size: 17px;
+    width: 100%;
+}
+
+/* Change the color of links on hover */
+.topnav .inactive-tab a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav .active-tab {
+    background-color: grey;
+    color: white;
+}
+
+.active-tab a:hover{
+    cursor: default;
+}
+
+.title {
+    text-align: center;
+}
+
+.title h1 {
+    font-size: 500%;
+    color: rgb(216, 216, 216);
+}
+
+.container {
+    border: 1px solid white;
+}
+
+.list {
+    list-style: none;
+}
+
+.search {
+    margin-bottom: 10px;
+    width: 650px;
+    height: 25px;
+    margin: 20px auto;
+    padding: 13px;
+}
+
+.search input {
+    width: 75%;
+    height: 100%;
+    float: left;
+}
+
+.searchButton {
+    float: right;
+    border: 1px solid white;
+}
+
+.searchButton button img {
+    height: 24px;
+    margin: 0;
+}
+
+.searchButton button:hover{
+    cursor: pointer;
+}
+
+.container {
+    text-align: center;
+    overflow: auto;
+    max-height: 750px;
+}
+
+
+.event-place {
+    width: 650px;
+    margin: 30px auto;
+    margin-top: 15px;
+    border: 1px solid white;
+}
+
+.topnav li {
+    float: left;
+    width: 30%;
+}
+
+ul {
+    list-style: none;
+    margin: 5px;
+}
+
+.event-list{
+    padding:15px;
+}
+
+.event-list li{
+    height: 100px;
+    border: 1px solid white;
+    margin-bottom: 15px;
+}
+
+.event-list li #type-of-event{
+    float:left;
+    object-fit: contain;
+    -ms-transform: matrix(1, -0.5, 0, 1, 0, 0); /* IE 9 */
+    -webkit-transform: matrix(1, -0.5, 0, 1, 0, 0); /* Safari */
+    transform: matrix(1, -0.5, 0, 1, 0, 0);
+    margin-right: 2px;
+}
+.event-list li img{
+    height: 70px;
+    width: 70px;
+    margin-top: 15px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    float: left;
+}
+
+.event-list li img:hover{
+    -ms-transform: rotate(20deg); 
+    -webkit-transform: rotate(20deg);
+    transform: rotate(20deg); 
+  
+}
+.event-list li h1{
+    text-align: center;
+    margin: 10px;
+    color: white;
+}
+.event-list li h2 {
+    margin: 10px;
+    color: white;
+    display: inline-block;
+}
+
+.dropdown {
+    float: left;   
+    margin: 0 10px; 
+}
+
+.dropbtn {
+    background-color: #f1f1f1;
+    height:30px;
+}
+
+.dropdown-content {
+    display:none;
+    position: absolute;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    display: block;
+    color: black;
+    background-color:white;
+    width: 78px;
+    text-decoration: none;
+    border-bottom: 1px solid rgb(175, 168, 168);
+}
+
+.dropdown:hover .dropdown-content {
+    display:block;
+}

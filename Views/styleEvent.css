@@ -1,13 +1,15 @@
 body {
-    background-image: url("../images/cosmos-background.jpg");
+    background-image: url("./../images/cosmos-background.jpg");
+    background-size: cover;
     text-align: center;  
 }
 #wrapper {
     width: 650px;
     margin: 0px auto;
     border: 1px solid white;
-    background-image: url("../images/musicTransparent.png");
+    background-image: url("./../images/music-transparent.png");
     background-color: rgba(0, 0, 0, 0.4);
+    background-size: cover;
 }
 
 #wrapper:hover{
@@ -16,7 +18,7 @@ body {
 }
 #title a{
     text-decoration: none;
-    color: black;
+    color: white;
     font-family: serif;
     font-size: 2em;
     font-weight: bold;
@@ -25,6 +27,7 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding: 10px;
     width: 50%;
     border: 1px solid #ccc;
 }
@@ -53,16 +56,18 @@ body {
     100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 #description {
-    color: black;
+    color: white;
     font-family: serif;
     font-size: 1.4em;
+    margin: 20px;
 }
 
 #location {
-    color: black;
+    color: white;
     font-family: serif;
     font-size: 1.2em;
     font-weight: bold;
+    margin: 10px;
 }
 
 #location span{
@@ -72,15 +77,16 @@ body {
 
 #location a{
     text-decoration: underline;
-    color:black;
+    color:white;
 
 }
 
 #dateTime {
-    color: black;
+    color: white;
     font-family: serif;
     font-size: 1.2em;
     font-weight: bold;
+    margin: 10px;
 }
 
 #dateTime span {
