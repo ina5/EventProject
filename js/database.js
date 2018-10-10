@@ -30,7 +30,7 @@ const events = [
     id: 4,
     title: 'Sexy Laundry',
     description: 'A comedy theatre play dealing with the issue of mid-life crisis and the erotic fantasies of a husband and wife',
-    type: 'çulture',
+    type: 'culture',
     picture: './../images/sexy-laundry.jpg',
     location: 'Theatro, Varbitza Str 12',
     dateTime: '16/10/2018 8:00 PM',
