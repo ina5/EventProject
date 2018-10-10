@@ -14,7 +14,7 @@ body {
 
 /* Add a black background color to the top navigation */
 .topnav {
-    background-color: #333;
+    background-color: #03626d;
     overflow: hidden;
 }
 
@@ -31,17 +31,18 @@ body {
 
 /* Change the color of links on hover */
 .topnav .inactive-tab a:hover {
-    background-color: #ddd;
+    background-color: #2eaebe;
     color: black;
 }
 
 /* Add a color to the active/current link */
 .topnav .active-tab {
-    background-color: grey;
+    background-color: #2497a5;
     color: white;
+    box-shadow: 0 8px 16px #2eaebe;
 }
 
-.active-tab a:hover{
+.active-tab a:hover {
     cursor: default;
 }
 
@@ -86,7 +87,7 @@ body {
     margin: 0;
 }
 
-.searchButton button:hover{
+.searchButton button:hover {
     cursor: pointer;
 }
 
@@ -114,11 +115,11 @@ ul {
     margin: 5px;
 }
 
-.event-list{
-    padding:15px;
+.event-list {
+    padding: 15px;
 }
 
-.event-list li{
+.event-list li {
     height: 100px;
     border: 1px solid white;
     margin-bottom: 15px;
@@ -154,30 +155,48 @@ ul {
 }
 
 .dropdown {
-    float: left;   
-    margin: 0 10px; 
+    float: left;
+    margin: 0 10px;
 }
 
 .dropbtn {
-    background-color: #f1f1f1;
-    height:30px;
+    background-color: #03626d;
+    height: 30px;
 }
 
 .dropdown-content {
-    display:none;
+    display: none;
     position: absolute;
     z-index: 1;
 }
 
 .dropdown-content a {
     display: block;
-    color: black;
-    background-color:white;
+    color: white;
+    background-color: #2eaebe;
     width: 78px;
     text-decoration: none;
     border-bottom: 1px solid rgb(175, 168, 168);
 }
 
 .dropdown:hover .dropdown-content {
-    display:block;
+    display: block;
+}
+
+
+/* Button Create Style on Main Page*/
+#create-btn-main {
+    display: inline-block;
+    padding: 14px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-family: "Times New Roman", Times, serif;
+    color: #fff;
+    background-color: #03626d;
+    border: none;
+    border-radius: 10px;
+    text-shadow: 0 0 black;
+    box-shadow: 0 8px 16px #999;
 }
