@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Event Project</title>
+    <link rel="stylesheet" href="./shortPreview-style.css">
+    <link rel="shortcut icon" type="image/png" href="./../images/Eventfavicon.icon">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="title">
+            <h1>Cool Events</h1>
+        </div>
+        <div class="search">
+            <input type="text" id="searchString" placeholder="Search..">
+            <div class="dropdown" id="searchDropDown">
+                <button class="dropbtn">
+                    <i class="fa fa-caret-down">search by:</i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#" data-value="title">title</a>
+                    <a href="#" data-value="type">type</a>
+                    <a href="#" data-value="location">location</a>
+                    <a href="#" data-value="date">date/time</a>
+                </div>
+            </div>
+            <div class="searchButton">
+                <button type="submit"><i class="еvent-search">
+                        <img src='./../images/magnifier.png'>
+                    </i></button>
+            </div>
+        </div>
+
+        <div class="event-place">
+            <div class="topnav">
+                <ul>
+                    <li class="active-tab">
+                        <a href="#today">Today</a>
+                    </li>
+                    <li class="inactive-tab">
+                        <a href="#past">Past</a>
+                    </li>
+                    <li class="inactive-tab">
+                        <a href="#future">Future</a>``
+                    </li>
+                </ul>
+            </div>
+            <div class="container">
+                <ul class="event-list">
+                    <li>
+                        <!-- <h2 id="type-of-event">music</h2> -->
+
+                        <img src="./../images/music.png">
+                        <h1>Stone Sour</h1>
+                        <h2>Oct 26 2018</h2>
+                        <h2>7:00 PM</h2>
+                    </li>
+
+                    <!-- to be included with JQuery  -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/main.js" type='module'></script>
+</body>
+
+</html>
