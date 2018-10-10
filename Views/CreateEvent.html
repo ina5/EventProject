@@ -15,12 +15,12 @@
         <p><label for="title">
                 <b>Title</b>
             </label>
-            <input class="create-input" type="text" name="title" required></p>
+            <input id="ev-title" class="create-input" type="text" name="title" required></p>
         <p>
             <label for="criteria">
                 <b>Choose a category</b>
             </label>
-            <select class="create-input">
+            <select  id="ev-type" class="create-input">
                 <option value="music">Music</option>
                 <option value="culture">Culture</option>
                 <option value="sport">Sport</option>
@@ -30,15 +30,15 @@
         <p> <label for="description">
                 <b>Description</b>
             </label>
-            <input class="create-input" type="text" name="description" required></p>
+            <input id="ev-description" class="create-input" type="text" name="description" required></p>
         <p><label for="location">
             <b>Location</b>
         </label>
-        <input class="create-input" type="text" name="location" required></p>
+        <input id="ev-location" class="create-input" type="text" name="location" required></p>
     <p>  <label for="time">
             <b>When</b>
         </label>
-        <input class="create-input" type="datetime" name="time" required></p>
+        <input id="ev-date" class="create-input" type="datetime-local" name="time" required></p>
         <button type="submit" class="createbtn">Create</button>
     </div>
 </div>
