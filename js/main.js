@@ -28,7 +28,7 @@ if (!localStorage.getItem(!'events')) {
 const searchDropDown = document.getElementById('searchDropDown');
 const searchTextElement = document.getElementById('searchString');
 
-searchDropDown.addEventListener('click', function (ev) {
+searchDropDown.addEventListener('click', function(ev) {
   const searchCriteria = ev.target.dataset.value;
   const searchText = searchTextElement.value;
   const foundEvents = find(searchText, searchCriteria);

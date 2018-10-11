@@ -1,4 +1,5 @@
 import eventsLocalStorage from './database.js';
+import * as $ from 'jquery';
 // Create new Object with different properties
 
 // seach a string from text box by criteria from drop down
