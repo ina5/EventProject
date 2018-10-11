@@ -88,7 +88,7 @@ const displayEventsOnCurrentTab = function() {
       displayEvents(getFutureEvents());
     }
   };
-
+  
   $('.topnav li').on('click', function() {
     // make the last active -> inactive
     $(this).parent().find('li')
