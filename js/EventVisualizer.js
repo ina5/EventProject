@@ -41,6 +41,7 @@ const displayEventInDetails = function() {
 };
 */
 
+
 const getEventPreviewHTML = function(event) {
   const divID = 'event-preview' + event.id;
   if (EventTypeManager.getIMGbyType(event.type) === 'Unknown event type.') {
@@ -51,37 +52,40 @@ const getEventPreviewHTML = function(event) {
   const startTime = event.dateTime.split(' ').slice(1).join(' ');
 
   return `<div id="${divID}" class="event-preview">
-            <img src="${imgPath}">
-            <h2>${event.title}</h2>
-
-            <h3 class="event-preview-time">Oct 26 2018 ${startTime}</h3>
-          </div>`;
+  <img src="${imgPath}">
+  <h2>${event.title}</h2>
+  
+  <h3 class="event-preview-time">Oct 26 2018 ${startTime}</h3>
+  </div>`;
 };
 
 const includeEventInList = function(event) {
   const previewHTML = getEventPreviewHTML(event);
   $('.event-list').append(`<li> ${previewHTML} </li>`).show();
+  /*   $('.event-list').click(function(e) {
+    console.log($(e.target));
+  }); */
 };
 
-const displayEventsOnTodayTab = function() {
-  getEventsToday().forEach((event) => {
+const displayEvents = function(eventsToDisplay) {
+  eventsToDisplay.forEach((event) => {
     includeEventInList(event);
   });
 };
 
+const clearEventsOnCurrentTab = function() {
+  $('.event-list').empty();
+};
+
 const displayEventsOnCurrentTab = function() {
   const _updateEvents = function(tabStatus) {
-    $('.event-list').empty();
+    clearEventsOnCurrentTab();
     if (tabStatus === 'today') {
-      displayEventsOnTodayTab();
+      displayEvents(getEventsToday());
     } else if (tabStatus === 'past') {
-      getPastEvents().forEach((event) => {
-        includeEventInList(event);
-      });
+      displayEvents(getPastEvents());
     } else {
-      getFutureEvents().forEach((event) => {
-        includeEventInList(event);
-      });
+      displayEvents(getFutureEvents());
     }
   };
 
@@ -100,8 +104,11 @@ const displayEventsOnCurrentTab = function() {
   });
 };
 
-
 export {
-  displayEventsOnTodayTab,
+  clearEventsOnCurrentTab,
+  getEventsToday,
+  getPastEvents,
+  getFutureEvents,
+  displayEvents,
   displayEventsOnCurrentTab,
 };

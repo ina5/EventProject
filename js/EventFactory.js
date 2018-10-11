@@ -8,6 +8,7 @@ const createEvent = function(title, description, type, picture, location, dateTi
 
   return {
     id,
+    title,
     description,
     type,
     picture,
