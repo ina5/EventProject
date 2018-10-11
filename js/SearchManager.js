@@ -7,7 +7,7 @@ const find = function(searchText, typeDd) {
     throw new Error('No valid data provided');
   }
   return eventsLocalStorage
-      .filter((event) => event[typeDd].toLowerCase().includes(searchText.toLowerCase()));
+  .filter((event) => event[typeDd].toLowerCase().includes(searchText.toLowerCase()));
 };
 export {
   find,
