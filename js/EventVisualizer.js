@@ -41,9 +41,58 @@ const displayEventInDetails = function() {
 };
 */
 
+const displayDetailedPreviewHTML = function (eventDivId) {
+  const eventID = +eventDivId.slice('#event-preview'.length);
+  const currentEvent = EventFactory.getElementById(eventID);
+  const detailedTitle = currentEvent.title;
+  const detailedImgPath = currentEvent.picture;
+  const detailedDescription = currentEvent.description;
+  const detailedLocation = currentEvent.location;
+  const detailedDateTime = currentEvent.dateTime;
+  $('.container').append('<div id="detailedPreviewDiv"</div>');
+  $('#detailedPreviewDiv').html('<button type="button" id="detailedButton">X</button>').show();
+  $('#detailedButton').after('<header><h1 id="detailedTitle"></h1></header>');
+  $('#detailedTitle').append(detailedTitle);
+  $('#detailedTitle').after('<div id="detailedPicture"></div>');
+  const elem = document.createElement('img');
+  document.getElementById('detailedPicture').appendChild(elem);
+  elem.src = detailedImgPath;
+  $('#detailedPicture').after('<div id="detailedDescription"></div>');
+  $('#detailedDescription').append(detailedDescription);
+  $('#detailedPicture').after('<div id="detailedLocation">Where? </div>');
+  $('#detailedLocation').append('<span></span>');
+  $('#detailedLocation span').append(detailedLocation);
+  $('#detailedLocation').append('<div id="detailedDateTime">When? </div>')
+  $('#detailedDateTime').append('<span></span>');
+  $('#detailedDateTime span').append(detailedDateTime);
+  log(currentEvent.type);
+  if (currentEvent.type === 'music') {
+    $('#detailedPreviewDiv').css({ 'background-image': 'url(./../images/music-transparent.png)', 'background-size': 'cover' });
+  } else if (currentEvent.type === 'sport') {
+    $('#detailedPreviewDiv').css({ 'background-image': 'url(./../images/sport-transparent.png)', 'background-size': 'cover' });
+  } else if (currentEvent.type === 'culture') {
+    $('#detailedPreviewDiv').css({ 'background-image': 'url(./../images/culture-transparent.png)', 'background-size': 'cover' });
+  } else if (currentEvent.type === 'business') {
+    $('#detailedPreviewDiv').css({ 'background-image': 'url(./../images/business-transparent.png)', 'background-size': 'cover' });
+  }
+
+  $(document).on('click', '#detailedButton', function () {
+    $('#detailedPreviewDiv').empty().remove();
+    $('.event-list').show();
+  });
+
+};
+
+const addOnClickEventOnShortPreview = function (elementId) {
+  $(document).on('click', `${elementId}`, function () {
+    $('.event-list').hide();
+    displayDetailedPreviewHTML(elementId);
+  });
+};
 
 const getEventPreviewHTML = function (event) {
   const divID = 'event-preview' + event.id;
+
   if (EventTypeManager.getIMGbyType(event.type) === 'Unknown event type.') {
     console.log(JSON.stringify(event));
   }
@@ -51,7 +100,7 @@ const getEventPreviewHTML = function (event) {
   // const formattedDate = ''; todo
   const startTime = event.dateTime.split(' ').slice(1)
     .join(' ');
-
+  addOnClickEventOnShortPreview(`#${divID}`);
   return `<div id="${divID}" class="event-preview">
   <img src="${imgPath}">
   <h2>${event.title}</h2>
@@ -70,6 +119,7 @@ const includeEventInList = function (event) {
 };
 
 const displayEvents = function (eventsToDisplay) {
+  $('#detailedPreviewDiv').hide();
   eventsToDisplay.forEach((event) => {
     includeEventInList(event);
   });
@@ -90,8 +140,8 @@ const displayEventsOnCurrentTab = function () {
       displayEvents(getFutureEvents());
     }
   };
-  
-  $('.topnav li').on('click', function() {
+
+  $('.topnav li').on('click', function () {
     // make the last active -> inactive
     $(this).parent()
       .find('li')
