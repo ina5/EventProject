@@ -6,7 +6,7 @@ const events = [
     type: 'music',
     picture: './../images/StoneSour.jpeg',
     location: 'Inter Expo Center',
-    dateTime: '27/06/2018 7:00 PM',
+    dateTime: new Date(2018, 5, 27, 19, 0),
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ const events = [
     type: 'sport',
     picture: './../images/slavia-levski.jpg',
     location: 'Georgi Asparuhov stadium',
-    dateTime: '07/10/2018 7:15 PM',
+    dateTime: new Date(2018, 9, 7, 19, 15),
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ const events = [
     type: 'culture',
     picture: './../images/comedy-fest.jpg',
     location: 'National Palace of Culture, Hall 1',
-    dateTime: '15/10/2018 8:00 PM',
+    dateTime: new Date(2018, 9, 15, 8, 0),
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ const events = [
     type: 'culture',
     picture: './../images/sexy-laundry.jpg',
     location: 'Theatro, Varbitza Str 12',
-    dateTime: '16/10/2018 8:00 PM',
+    dateTime: new Date(2018, 9, 16, 8, 0),
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ const events = [
     type: 'culture',
     picture: './../images/my-big-french-wedding.jpg',
     location: 'Satirical Theatre Aleko Konstantinov',
-    dateTime: '16/10/2018 7:30 PM',
+    dateTime: new Date(2018, 9, 16, 19, 30),
   },
   {
     id: 6,
@@ -51,7 +51,7 @@ const events = [
     type: 'business',
     picture: './../images/first-conference-industrial-estates.jpg',
     location: 'Inter Expo Center, Vitosha Hall',
-    dateTime: '16/10/2018 9 AM - 5 PM',
+    dateTime: new Date(2018, 9, 16, 21, 0),
   },
   {
     id: 7,
@@ -60,7 +60,7 @@ const events = [
     type: 'music',
     picture: './../images/Jethro-Tull.jpg',
     location: 'National Palace Of Culture, Hall 1',
-    dateTime: '17/10/2018 8:00 PM',
+    dateTime: new Date(2018, 9, 17, 20, 0),
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ const events = [
     type: 'music',
     picture: './../images/Jose-Carreras.jpg',
     location: 'Arena Armeec Sports Hall',
-    dateTime: '21/10/2018 8 PM',
+    dateTime: new Date(2018, 9, 21, 20, 0),
   },
   {
     id: 9,
@@ -78,7 +78,7 @@ const events = [
     type: 'business',
     picture: './../JSTalks.jpg',
     location: 'Paradise Mall, Sofia Event Center',
-    dateTime: '17/11/2018 8:30 AM - 6:30 PM',
+    dateTime: new Date(2018, 10, 17, 20, 0),
   },
 ];
 
