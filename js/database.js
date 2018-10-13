@@ -76,7 +76,7 @@ const events = [
     title: 'js.talks("Bulgaria")',
     description: 'A software community event to discuss the latest trends in JavaScript',
     type: 'business',
-    picture: './../JSTalks.jpg',
+    picture: './../images/JSTalks.jpg',
     location: 'Paradise Mall, Sofia Event Center',
     dateTime: new Date(2018, 10, 17, 20, 0),
   },

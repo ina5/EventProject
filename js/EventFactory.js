@@ -40,9 +40,21 @@ const all = function() {
   return eventsLocalStorage;
 };
 
+// get an element from the database by its id
+const getElementById = function(id) {
+  let foundElement;
+  eventsLocalStorage.forEach((element) => {
+    if (element.id === id) {
+      foundElement = element;
+    }
+  });
+  return foundElement;
+};
+
 export {
   createEvent,
   all,
   findByTitle,
   addEventToDB,
+  getElementById,
 };
