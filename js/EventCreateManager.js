@@ -14,8 +14,7 @@ const createEventForm = function() {
     EventVisualizer.makeTabsInactive();
 
     // ATTACH CREATE EVENT FORM
-    const divCreateEvent = $('<div></div>').addClass('div-createEvent');
-    $('.container').append(divCreateEvent);
+    const divCreateEvent = $('.div-createEvent').empty().show();
 
     // START CREATE NEW ELEMENTS
     const text = $('<p></p>')
@@ -90,6 +89,8 @@ const createEventForm = function() {
         .text('Create')
         .addClass('btn-createEvent');
 
+    apllyClickEventOnCreateButton();
+
     // APPEND THE WHOLE ELEMENTS
     divCreateEvent
         .append(headerText, text, labelTitle, labelCriteria, labelDescription, labelPicture, labelLocation, labelDate, btnCreateEvent);
@@ -100,41 +101,35 @@ const createEventForm = function() {
         .css('background-image', 'url("./../images/cosmos-background.jpg")');
   });
 };
-createEventForm();
 
+const apllyClickEventOnCreateButton = function() {
+  btnCreateEvent.click(function() {
+    // GET VALUES FROM THE INPUT
+    const inputTitleVal = $('#inputTitle').val();
+    const inputDescriptionVal = $('#inputDescription').val();
+    const inputTypeVal = $('#inputType').val();
+    const inputPicturePath = $('#inputPicture').val();
+    const inputLocationVal = $('#inputLocation').val();
+    const inputDateVal = $('#inputDate').val();
 
-btnCreateEvent.click(function() {
-  // GET VALUES FROM THE INPUT
-  const inputTitleVal = $('#inputTitle').val();
-  const inputDescriptionVal = $('#inputDescription').val();
-  const inputTypeVal = $('#inputType').val();
-  const inputPicturePath = $('#inputPicture').val();
-  const inputLocationVal = $('#inputLocation').val();
-  const inputDateVal = $('#inputDate').val();
+    // VALIDATION
+    if (!inputTitleVal ||
+            !inputDescriptionVal ||
+            !inputTypeVal ||
+            !inputPicturePath ||
+            !inputLocationVal ||
+            !inputDateVal) {
+      alert('No valid data provided');
+    } else {
+      const eventToAdd = EventFactory.createEvent(inputTitleVal, inputDescriptionVal,
+          inputTypeVal, inputPicturePath, inputLocationVal, inputDateVal);
 
-  // VALIDATION
-  if (!inputTitleVal ||
-        !inputDescriptionVal ||
-        !inputTypeVal ||
-        !inputPicturePath ||
-        !inputLocationVal ||
-        !inputDateVal) {
-    alert('No valid data provided');
-  }
-  if (EventFactory.findByDateTime(inputDateVal)) {
-    alert('The event already exists');
-  } else {
-    const eventToAdd = EventFactory.createEvent(inputTitleVal, inputDescriptionVal,
-        inputTypeVal, inputPicturePath, inputLocationVal, inputDateVal);
+      EventFactory.addEventToDB(eventToAdd);
+      alert('The event was added successfully');
+    }
+    // clearInputForms();
+    // $('.container').find('.div-createEvent').remove();
+  });
+};
 
-    EventFactory.addEventToDB(eventToAdd);
-    alert('The event was added successfully');
-  }
-  // CLEAR INPUT VALUE
-  $('#inputTitle').val('');
-  $('#inputDescription').val('');
-  $('#inputType').val('');
-  $('#inputPicture').val('');
-  $('#inputLocation').val('');
-  $('#inputDate').val('');
-});
+export { createEventForm };

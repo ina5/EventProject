@@ -14,7 +14,7 @@ const getDateWithoutTime = function(date) {
   const month = (dateObject.getMonth().toString().length === 1) ? '0' + dateObject.getMonth() : dateObject.getMonth();
   const day = (dateObject.getDate().toString().length === 1) ? '0' + dateObject.getDate() : dateObject.getDate();
 
-  return `${day}/${month}/${dateObject.getFullYear()}`;
+  return `${dateObject.getFullYear()}/${month}/${day}}`;
 };
 
 const isToday = function(date) {

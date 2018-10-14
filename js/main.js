@@ -35,3 +35,4 @@ searchDropDown.addEventListener('click', function(ev) {
 
 EventVisualizer.displayEvents(EventVisualizer.getEventsToday());
 EventVisualizer.displayEventsOnCurrentTab();
+EventCreateManager.createEventForm();
