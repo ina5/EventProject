@@ -1,20 +1,17 @@
 import * as $ from 'jquery';
 import * as EventFactory from './EventFactory.js';
+import * as EventVisualizer from './EventVisualizer.js';
 
 // CREATE BUTTON HERE
 const btnCreateEvent = $('<button></button>');
 
 const createEventForm = function() {
   $('#create-btn-main').click(function() {
-    $('.container').children().hide();
-    $('#create-btn-main').hide();
+    EventVisualizer.hideContentInContainer();
+    EventVisualizer.hideCreateEventButton();
 
     // MAKE TABS INACTIVE
-    $('#topnav-tabs')
-        .children()
-        .removeClass('active-tab')
-        .addClass('inactive-tab');
-    $('.event-list').hide();
+    EventVisualizer.makeTabsInactive();
 
     // ATTACH CREATE EVENT FORM
     const divCreateEvent = $('<div></div>').addClass('div-createEvent');
@@ -62,6 +59,13 @@ const createEventForm = function() {
         .append('<input id="inputDescription"></input>')
         .addClass('input-createEvent');
 
+    // PICTURE PATH
+    const labelPicture = $('<label></label>')
+        .text('Picture path  ');
+    labelPicture
+        .append('<input id="inputPicture"></input>')
+        .addClass('input-createEvent');
+
     // LOCATION
     const labelLocation = $('<label></label>')
         .text('Location  ');
@@ -88,7 +92,7 @@ const createEventForm = function() {
 
     // APPEND THE WHOLE ELEMENTS
     divCreateEvent
-        .append(headerText, text, labelTitle, labelCriteria, labelDescription, labelLocation, labelDate, btnCreateEvent);
+        .append(headerText, text, labelTitle, labelCriteria, labelDescription, labelPicture, labelLocation, labelDate, btnCreateEvent);
     divCreateEvent.children().css({
       'display': 'block',
     });
@@ -103,6 +107,7 @@ btnCreateEvent.click(function() {
   const inputTitleVal = $('#inputTitle').val();
   const inputDescriptionVal = $('#inputDescription').val();
   const inputTypeVal = $('#inputType').val();
+  const inputPicturePath = $('#inputPicture').val();
   const inputLocationVal = $('#inputLocation').val();
   const inputDateVal = $('#inputDate').val();
 
@@ -118,7 +123,7 @@ btnCreateEvent.click(function() {
     alert('No valid data provided');
   } else {
     const eventToAdd = EventFactory.createEvent(inputTitleVal, inputDescriptionVal,
-        inputTypeVal, '', inputLocationVal, inputDateVal);
+        inputTypeVal, inputPicturePath, inputLocationVal, inputDateVal);
 
     EventFactory.addEventToDB(eventToAdd);
 

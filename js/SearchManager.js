@@ -1,4 +1,5 @@
 import eventsLocalStorage from './database.js';
+import * as EventVisualizer from './EventVisualizer.js';
 import * as $ from 'jquery';
 // Create new Object with different properties
 
@@ -7,7 +8,8 @@ const find = function(searchText, typeDd) {
   if (searchText === '' || !typeDd) {
     throw new Error('No valid data provided');
   }
-  $('#topnav-tabs').children().removeClass('active-tab').addClass('inactive-tab');
+  EventVisualizer.makeTabsInactive();
+  EventVisualizer.showCreateEventButton();
   return eventsLocalStorage
       .filter((event) => event[typeDd].toLowerCase().includes(searchText.toLowerCase()));
 };

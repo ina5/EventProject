@@ -37,6 +37,31 @@ const getFutureEvents = function() {
   return eventsFuture;
 };
 
+
+const makeTabsInactive = function() {
+  $('#topnav-tabs')
+      .children()
+      .removeClass('active-tab inactive-tab')
+      .addClass('inactive-tab');
+};
+
+const makeTabActive = function(tab) {
+  $(tab).removeClass('inactive-tab')
+      .addClass('active-tab');
+};
+
+const hideContentInContainer = function() {
+  $('.container').children().hide();
+};
+
+const hideCreateEventButton = function() {
+  $('#create-btn-main').hide();
+};
+
+const showCreateEventButton = function() {
+  $('#create-btn-main').show();
+};
+
 /*
 const displayEventInDetails = function() {
   const pastState = $('.event-list').html();
@@ -48,6 +73,7 @@ const displayEventInDetails = function() {
 const displayDetailedPreviewHTML = function(eventDivId) {
   const eventID = +eventDivId.slice('#event-preview'.length);
   const currentEvent = EventFactory.getElementById(eventID);
+
   const detailedTitle = currentEvent.title;
   const detailedImgPath = currentEvent.picture;
   const detailedDescription = currentEvent.description;
@@ -114,7 +140,7 @@ const includeEventInList = function(event) {
 };
 
 const displayEvents = function(eventsToDisplay) {
-  $('.container').children().hide();
+  hideContentInContainer();
   // $('#detailedPreviewDiv').hide();
   eventsToDisplay.forEach((event) => {
     includeEventInList(event);
@@ -125,34 +151,27 @@ const clearEventsOnCurrentTab = function() {
   $('.event-list').empty();
 };
 
+const updateEventsOnTab = function(tab) {
+  clearEventsOnCurrentTab();
+  if (tab === 'today') {
+    displayEvents(getEventsToday());
+  } else if (tab === 'past') {
+    displayEvents(getPastEvents());
+  } else {
+    displayEvents(getFutureEvents());
+  }
+};
+
 const displayEventsOnCurrentTab = function() {
-  const _updateEvents = function(tabStatus) {
-    clearEventsOnCurrentTab();
-    if (tabStatus === 'today') {
-      displayEvents(getEventsToday());
-    } else if (tabStatus === 'past') {
-      displayEvents(getPastEvents());
-    } else {
-      displayEvents(getFutureEvents());
-    }
-  };
-
   $('.topnav li').on('click', function() {
-    // make the last active -> inactive
-    $(this).parent()
-        .find('li')
-        .removeClass('active-tab inactive-tab')
-        .addClass('inactive-tab');
-
-    // make clicked one -> active
-    $(this).removeClass('inactive-tab')
-        .addClass('active-tab');
+    makeTabsInactive();
+    makeTabActive(this);
 
     // update displayed events
-    const toDisplayStatus = $(this).find('a')
+    const nameOfTabToUpdate = $(this).find('a')
         .attr('href')
         .slice(1);
-    _updateEvents(toDisplayStatus);
+    updateEventsOnTab(nameOfTabToUpdate);
   });
 };
 
@@ -163,4 +182,9 @@ export {
   getFutureEvents,
   displayEvents,
   displayEventsOnCurrentTab,
+  makeTabsInactive,
+  makeTabActive,
+  hideContentInContainer,
+  hideCreateEventButton,
+  showCreateEventButton,
 };

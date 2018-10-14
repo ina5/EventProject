@@ -31,7 +31,9 @@ const findByTitle = (titleName) => {
     throw new Error('No title provided!');
   }
   // Filter by title
-  const eventFiltered = eventsLocalStorage.title.filter((event) => event.title === titleName);
+  const eventFiltered = eventsLocalStorage.title.filter( (event) => {
+    return event.title === titleName;
+  });
   return eventFiltered;
 };
 // Return all Events
@@ -42,13 +44,10 @@ const all = function() {
 
 // get an element from the database by its id
 const getElementById = function(id) {
-  let foundElement;
-  eventsLocalStorage.forEach((element) => {
-    if (element.id === id) {
-      foundElement = element;
-    }
+  const foundObject = all().find( (event) => {
+    return event.id === id;
   });
-  return foundElement;
+  return foundObject;
 };
 
 export {

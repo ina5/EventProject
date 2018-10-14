@@ -6,7 +6,7 @@ import {
   find,
 } from './SearchManager.js';
 import * as EventVisualizer from './EventVisualizer.js';
-import * as manager from './EventCreateManager.js';
+import * as EventCreateManager from './EventCreateManager.js';
 const event = EventFactory.createEvent('1', '2', '3', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXSlDrk2m6hodOSw4nyuhjkfiYbozgx0GMDdWepDf1koLf_s3F9g', '5', '16/2/2018 8:00 PM');
 /* events.push(person);
 const person2 = EventFactory.createEvent('pesho', 2, 3, 4, 5, 6);
