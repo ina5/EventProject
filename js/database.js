@@ -69,7 +69,7 @@ const events = [
     type: 'music',
     picture: './../images/Jose-Carreras.jpg',
     location: 'Arena Armeec Sports Hall',
-    dateTime: new Date(2018, 9, 21, 20, 0),
+    dateTime: new Date(2018, 9, 14, 20, 0),
   },
   {
     id: 9,

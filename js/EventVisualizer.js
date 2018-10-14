@@ -1,19 +1,20 @@
 import * as EventFactory from './EventFactory.js';
 import * as EventTypeManager from './EventTypeManager.js';
 import * as $ from 'jquery';
-import {
-  log,
-} from './logger.js';
+import * as DateManager from './DateManager.js';
+import { log } from './logger.js';
 // TO DO: change the return condition (compare to current date and not
 // the magic number for month 10)
+
+/* const hideAllFromContainer = function() {
+  $('.container').children().hide();
+}; */
 
 const getEventsToday = function() {
   $('.div-createEvent').hide();
   $('#create-btn-main').show();
   const eventsToday = EventFactory.all()
-      .filter((event) => {
-        return +event.dateTime.split(' ')[0].split('/')[1] === 10;
-      });
+      .filter((event) => DateManager.isToday(event.dateTime));
 
   return eventsToday;
 };
@@ -22,9 +23,7 @@ const getPastEvents = function() {
   $('.div-createEvent').hide();
   $('#create-btn-main').show();
   const eventsPast = EventFactory.all()
-      .filter((event) => {
-        return +event.dateTime.split(' ')[0].split('/')[1] < 10;
-      });
+      .filter((event) => DateManager.isPast(event.dateTime));
 
   return eventsPast;
 };
@@ -32,9 +31,8 @@ const getPastEvents = function() {
 const getFutureEvents = function() {
   $('.div-createEvent').hide();
   $('#create-btn-main').show();
-  const eventsFuture = EventFactory.all().filter((event) => {
-    return +event.dateTime.split(' ')[0].split('/')[1] > 10;
-  });
+  const eventsFuture = EventFactory.all()
+      .filter((event) => DateManager.isFuture(event.dateTime));
 
   return eventsFuture;
 };
@@ -54,7 +52,7 @@ const displayDetailedPreviewHTML = function(eventDivId) {
   const detailedImgPath = currentEvent.picture;
   const detailedDescription = currentEvent.description;
   const detailedLocation = currentEvent.location;
-  const detailedDateTime = currentEvent.dateTime;
+  const detailedDateTime = DateManager.convertToHumanReadableDate(currentEvent.dateTime);
   $('.container').append('<div id="detailedPreviewDiv"</div>');
   $('#detailedPreviewDiv').html('<button type="button" id="detailedButton">X</button>').show();
   $('#detailedButton').after('<header><h1 id="detailedTitle"></h1></header>');
@@ -72,15 +70,7 @@ const displayDetailedPreviewHTML = function(eventDivId) {
   $('#detailedDateTime').append('<span></span>');
   $('#detailedDateTime span').append(detailedDateTime);
   log(currentEvent.type);
-  if (currentEvent.type === 'music') {
-    $('#detailedPreviewDiv').css({ 'background-image': 'url(./../images/music-transparent.png)', 'background-size': 'cover' });
-  } else if (currentEvent.type === 'sport') {
-    $('#detailedPreviewDiv').css({ 'background-image': 'url(./../images/sport-transparent.png)', 'background-size': 'cover' });
-  } else if (currentEvent.type === 'culture') {
-    $('#detailedPreviewDiv').css({ 'background-image': 'url(./../images/culture-transparent.png)', 'background-size': 'cover' });
-  } else if (currentEvent.type === 'business') {
-    $('#detailedPreviewDiv').css({ 'background-image': 'url(./../images/business-transparent.png)', 'background-size': 'cover' });
-  }
+  $('#detailedPreviewDiv').css({ 'background-image': `url(./..${EventTypeManager.getBackgroundTypeIMG(currentEvent.type)})`, 'background-size': 'cover' });
 
   $(document).on('click', '#detailedButton', function() {
     $('#detailedPreviewDiv').empty().remove();
@@ -98,11 +88,11 @@ const addOnClickEventOnShortPreview = function(elementId) {
 const getEventPreviewHTML = function(event) {
   const divID = 'event-preview' + event.id;
 
-  if (EventTypeManager.getIMGbyType(event.type) === 'Unknown event type.') {
+  if (EventTypeManager.getRegularTypeIMG(event.type) === 'Unknown event type.') {
     console.log(JSON.stringify(event));
   }
-  const imgPath = './..' + EventTypeManager.getIMGbyType(event.type);
-  // const formattedDate = ''; todo
+  const imgPath = './..' + EventTypeManager.getRegularTypeIMG(event.type);
+  const formattedDate = DateManager.convertToHumanReadableDate(event.dateTime);
   const startTime = event.dateTime.split(' ').slice(1)
       .join(' ');
   addOnClickEventOnShortPreview(`#${divID}`);
@@ -110,7 +100,7 @@ const getEventPreviewHTML = function(event) {
   <img src="${imgPath}">
   <h2>${event.title}</h2>
   
-  <h3 class="event-preview-time">Oct 26 2018 ${startTime}</h3>
+  <h3 class="event-preview-time">${formattedDate} ${startTime}</h3>
   </div>`;
 };
 
@@ -124,7 +114,8 @@ const includeEventInList = function(event) {
 };
 
 const displayEvents = function(eventsToDisplay) {
-  $('#detailedPreviewDiv').hide();
+  $('.container').children().hide();
+  // $('#detailedPreviewDiv').hide();
   eventsToDisplay.forEach((event) => {
     includeEventInList(event);
   });

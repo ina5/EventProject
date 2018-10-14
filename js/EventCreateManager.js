@@ -6,6 +6,7 @@ const btnCreateEvent = $('<button></button>');
 
 const createEventForm = function() {
   $('#create-btn-main').click(function() {
+    $('.container').children().hide();
     $('#create-btn-main').hide();
 
     // MAKE TABS INACTIVE
