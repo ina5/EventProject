@@ -91,4 +91,24 @@ const initialEvents = function() {
   return JSON.parse(localStorage.getItem('events'));
 };
 const eventsLocalStorage = initialEvents();
+
+//
+const init = function() {
+  if (!localStorage.getItem('events')) {
+    localStorage.setItem('events', JSON.stringify(events));
+  }
+
+  return JSON.parse(localStorage.getItem('events'));
+};
+// SET NEW PROPERTY
+const saveItem = function(itemName, value) {
+  localStorage.setItem(itemName, JSON.stringify(value));
+};
+// GET EACH PROPERTY
+const getItem = function(itemName) {
+  return JSON.parse(localStorage.getItem(itemName));
+};
+
+
+export { getItem, init, saveItem };
 export default eventsLocalStorage;

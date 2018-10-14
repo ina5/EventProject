@@ -104,6 +104,7 @@ createEventForm();
 
 
 btnCreateEvent.click(function() {
+  // GET VALUES FROM THE INPUT
   const inputTitleVal = $('#inputTitle').val();
   const inputDescriptionVal = $('#inputDescription').val();
   const inputTypeVal = $('#inputType').val();
@@ -111,22 +112,29 @@ btnCreateEvent.click(function() {
   const inputLocationVal = $('#inputLocation').val();
   const inputDateVal = $('#inputDate').val();
 
-  console.log(inputDateVal + ' ---  ------- ');
-  console.log(new Date(inputDateVal));
-
   // VALIDATION
-  if (!inputTitleVal
-        || !inputDescriptionVal
-        || !inputTypeVal
-        || !inputLocationVal
-        || !inputDateVal) {
+  if (!inputTitleVal ||
+        !inputDescriptionVal ||
+        !inputTypeVal ||
+        !inputPicturePath ||
+        !inputLocationVal ||
+        !inputDateVal) {
     alert('No valid data provided');
+  }
+  if (EventFactory.findByDateTime(inputDateVal)) {
+    alert('The event already exists');
   } else {
     const eventToAdd = EventFactory.createEvent(inputTitleVal, inputDescriptionVal,
         inputTypeVal, inputPicturePath, inputLocationVal, inputDateVal);
 
     EventFactory.addEventToDB(eventToAdd);
-
     alert('The event was added successfully');
   }
+  // CLEAR INPUT VALUE
+  $('#inputTitle').val('');
+  $('#inputDescription').val('');
+  $('#inputType').val('');
+  $('#inputPicture').val('');
+  $('#inputLocation').val('');
+  $('#inputDate').val('');
 });
