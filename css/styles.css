@@ -269,7 +269,7 @@ ul {
     font-size: 2em;
     font-weight: bold;
 }
-#detailedPicture img {
+#detailedPicture {
     max-width: 400px;
     max-height: 400px;
     padding: 10px;
