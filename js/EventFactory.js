@@ -1,5 +1,4 @@
 import eventsLocalStorage from './database.js';
-import { getItem, setItem, init } from './database.js';
 import {
   log,
 } from './logger.js';
@@ -26,17 +25,13 @@ const addEventToDB = function(event) {
   log(`Added an event in db at ${new Date()}`);
 };
 
-//
-init();
-const events = getItem('events');
-
 // Searching by title Function
 const findByTitle = (titleName) => {
   if (!titleName) {
     throw new Error('No title provided!');
   }
   // Filter by title
-  const eventFiltered = events.filter( (event) => {
+  const eventFiltered = eventsLocalStorage.title.filter( (event) => {
     return event.title === titleName;
   });
   return eventFiltered;
@@ -46,8 +41,8 @@ const findByDateTime = (eventDate) => {
   if (!eventDate) {
     throw new Error('No date provided!');
   }
-  // Filter by title
-  const eventFiltered = events.filter( (event) => {
+  // Filter by date
+  const eventFiltered = eventsLocalStorage.filter( (event) => {
     return event.dateTime === eventDate;
   });
   return eventFiltered;

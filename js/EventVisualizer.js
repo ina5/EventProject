@@ -2,68 +2,63 @@ import * as EventFactory from './EventFactory.js';
 import * as EventTypeManager from './EventTypeManager.js';
 import * as $ from 'jquery';
 import * as DateManager from './DateManager.js';
-import { log } from './logger.js';
-// TO DO: change the return condition (compare to current date and not
-// the magic number for month 10)
 
-/* const hideAllFromContainer = function() {
-  $('.container').children().hide();
-}; */
-
-const getEventsToday = function () {
+const hideCreateFormAndShowCreateButton = function() {
   $('.div-createEvent').hide();
   $('#create-btn-main').show();
+};
+
+const getEventsToday = function() {
+  hideCreateFormAndShowCreateButton();
   const eventsToday = EventFactory.all()
-    .filter((event) => DateManager.isToday(event.dateTime));
+      .filter((event) => DateManager.isToday(event.dateTime));
 
   return eventsToday;
 };
 
-const getPastEvents = function () {
-  $('.div-createEvent').hide();
-  $('#create-btn-main').show();
+const getPastEvents = function() {
+  hideCreateFormAndShowCreateButton();
   const eventsPast = EventFactory.all()
-    .filter((event) => DateManager.isPast(event.dateTime));
+      .filter((event) => DateManager.isPast(event.dateTime));
 
   return eventsPast;
 };
 
-const getFutureEvents = function () {
-  $('.div-createEvent').hide();
-  $('#create-btn-main').show();
+const getFutureEvents = function() {
+  hideCreateFormAndShowCreateButton();
   const eventsFuture = EventFactory.all()
-    .filter((event) => DateManager.isFuture(event.dateTime));
+      .filter((event) => DateManager.isFuture(event.dateTime));
 
   return eventsFuture;
 };
 
 
-const makeTabsInactive = function () {
+const makeTabsInactive = function() {
   $('#topnav-tabs')
-    .children()
-    .removeClass('active-tab inactive-tab')
-    .addClass('inactive-tab');
+      .children()
+      .removeClass('active-tab inactive-tab')
+      .addClass('inactive-tab');
 };
 
-const makeTabActive = function (tab) {
+const makeTabActive = function(tab) {
   $(tab).removeClass('inactive-tab')
-    .addClass('active-tab');
+      .addClass('active-tab');
 };
 
-const hideContentInContainer = function () {
+const hideContentInContainer = function() {
   $('.container').children().hide();
 };
 
-const hideCreateEventButton = function () {
+const hideCreateEventButton = function() {
   $('#create-btn-main').hide();
 };
 
-const showCreateEventButton = function () {
+const showCreateEventButton = function() {
   $('#create-btn-main').show();
 };
 
 
-const displayDetailedPreviewHTML = function (eventDivId) {
+const displayDetailedPreviewHTML = function(eventDivId) {
   $('#detailedPreviewDiv').remove();
 
   const eventID = +eventDivId.slice('#event-preview'.length);
@@ -72,30 +67,30 @@ const displayDetailedPreviewHTML = function (eventDivId) {
 
   const detailedPreviewDiv = $('<div>').attr('id', 'detailedPreviewDiv');
   const detailedButtonClose = $('<button>')
-    .attr('type', 'button')
-    .text('close')
-    .attr('id', 'detailedButton');
+      .attr('type', 'button')
+      .text('close')
+      .attr('id', 'detailedButton');
   const detailedTitle = $('<h1>')
-    .attr('id', 'detailedTitle')
-    .text(currentEvent.title);
+      .attr('id', 'detailedTitle')
+      .text(currentEvent.title);
   const detailedPicture = $('<img>')
-    .attr('src', currentEvent.picture)
-    .attr('id', 'detailedPicture');
+      .attr('src', currentEvent.picture)
+      .attr('id', 'detailedPicture');
   const detailedLocation = $('<div>')
-    .attr('id', 'detailedLocation')
-    .text('Where? ')
-    .append($('<span>').text(currentEvent.location));
+      .attr('id', 'detailedLocation')
+      .text('Where? ')
+      .append($('<span>').text(currentEvent.location));
   const detailedDateTime = $('<div>')
-    .attr('id', 'detailedDateTime')
-    .text('When? ')
-    .append($('<span>').text(humanReadableDateTime));
+      .attr('id', 'detailedDateTime')
+      .text('When? ')
+      .append($('<span>').text(humanReadableDateTime));
   const detailedDescription = $('<div>')
-    .attr('id', 'detailedDescription')
-    .text(currentEvent.description);
+      .attr('id', 'detailedDescription')
+      .text(currentEvent.description);
 
   $('.container').append(detailedPreviewDiv);
   detailedPreviewDiv.append(detailedButtonClose, detailedTitle, detailedPicture,
-    detailedLocation, detailedDateTime, detailedDescription);
+      detailedLocation, detailedDateTime, detailedDescription);
 
   $('#detailedPreviewDiv').css({ 'background-image': `url(./..${EventTypeManager.getBackgroundTypeIMG(currentEvent.type)})`, 'background-size': 'cover' });
 
@@ -116,12 +111,12 @@ const getEventPreviewHTML = function(event) {
   const divID = 'event-preview' + event.id;
 
   if (EventTypeManager.getRegularTypeIMG(event.type) === 'Unknown event type.') {
-    return;
+    throw new Error('Unknown event type.');
   }
   const imgPath = './..' + EventTypeManager.getRegularTypeIMG(event.type);
   const formattedDate = DateManager.convertToHumanReadableDate(event.dateTime);
   const startTime = event.dateTime.split(' ').slice(1)
-    .join(' ');
+      .join(' ');
   addOnClickEventOnShortPreview(`#${divID}`);
 
   return $('<div>')
@@ -132,24 +127,23 @@ const getEventPreviewHTML = function(event) {
       .append($('<h3>').addClass('event-preview-time').text(formattedDate + ' ' + startTime));
 };
 
-const includeEventInList = function (event) {
+const includeEventInList = function(event) {
   const previewHTML = getEventPreviewHTML(event);
   $('.event-list').append($('<li>').html(previewHTML)).show();
 };
 
-const displayEvents = function (eventsToDisplay) {
+const displayEvents = function(eventsToDisplay) {
   hideContentInContainer();
-  // $('#detailedPreviewDiv').hide();
   eventsToDisplay.forEach((event) => {
     includeEventInList(event);
   });
 };
 
-const clearEventsOnCurrentTab = function () {
+const clearEventsOnCurrentTab = function() {
   $('.event-list').empty();
 };
 
-const updateEventsOnTab = function (tab) {
+const updateEventsOnTab = function(tab) {
   clearEventsOnCurrentTab();
   if (tab === 'today') {
     displayEvents(getEventsToday());
@@ -160,17 +154,15 @@ const updateEventsOnTab = function (tab) {
   }
 };
 
-const displayEventsOnCurrentTab = function () {
-  $('.topnav li').on('click', function () {
+const displayEventsOnCurrentTab = function() {
+  $('.topnav li').on('click', function() {
     makeTabsInactive();
-    console.log(this);
-    console.log($(this));
     makeTabActive(this);
 
     // update displayed events
     const nameOfTabToUpdate = $(this).find('a')
-      .attr('href')
-      .slice(1);
+        .attr('href')
+        .slice(1);
     updateEventsOnTab(nameOfTabToUpdate);
   });
 };

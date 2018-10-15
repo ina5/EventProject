@@ -1,4 +1,3 @@
-import eventsLocalStorage from './database.js';
 import * as EventVisualizer from './EventVisualizer.js';
 import * as EventFactory from './EventFactory';
 import * as $ from 'jquery';
@@ -11,7 +10,7 @@ const find = function(searchText, typeDd) {
   }
   EventVisualizer.makeTabsInactive();
   EventVisualizer.showCreateEventButton();
-  return eventsLocalStorage
+  return EventFactory.all()
       .filter((event) => event[typeDd].toLowerCase().includes(searchText.toLowerCase()));
 };
 

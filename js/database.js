@@ -69,7 +69,7 @@ const events = [
     type: 'music',
     picture: './../images/Jose-Carreras.jpg',
     location: 'Arena Armeec Sports Hall',
-    dateTime: new Date(2018, 9, 14, 20, 0),
+    dateTime: new Date(2018, 9, 21, 20, 0),
   },
   {
     id: 9,
@@ -92,23 +92,4 @@ const initialEvents = function() {
 };
 const eventsLocalStorage = initialEvents();
 
-//
-const init = function() {
-  if (!localStorage.getItem('events')) {
-    localStorage.setItem('events', JSON.stringify(events));
-  }
-
-  return JSON.parse(localStorage.getItem('events'));
-};
-// SET NEW PROPERTY
-const saveItem = function(itemName, value) {
-  localStorage.setItem(itemName, JSON.stringify(value));
-};
-// GET EACH PROPERTY
-const getItem = function(itemName) {
-  return JSON.parse(localStorage.getItem(itemName));
-};
-
-
-export { getItem, init, saveItem };
 export default eventsLocalStorage;

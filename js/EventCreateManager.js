@@ -1,5 +1,6 @@
 import * as EventFactory from './EventFactory.js';
 import * as EventVisualizer from './EventVisualizer.js';
+import { log } from './logger.js';
 
 const createElementWithAppend = function(element, textToAdd, classToAdd, toAppend) {
   return $(`<${element}>`)
@@ -53,14 +54,17 @@ const createEventForm = function() {
         'input-createEvent', '<input id="inputLocation">');
 
     const inputDate = $('<input>').attr('id', 'inputDate').attr('type', 'text');
-    
+
     const labelDate = createElementWithAppend('label', 'When  ',
-    'input-createEvent', inputDate);
+        'input-createEvent', inputDate);
     divCreateEvent
-    .append(headerText, text, labelTitle, labelCriteria, labelDescription, labelPicture, labelLocation, labelDate, btnCreateEvent);
-    
-    $(function () {
-        $('#inputDate').datetimepicker();
+        .append(headerText, text, labelTitle, labelCriteria, labelDescription, labelPicture, labelLocation, labelDate, btnCreateEvent);
+
+    // should remove the previous divs created by the library in order to protect us from leaks
+    $('.xdsoft_datetimepicker').remove();
+
+    $(function() {
+      $('#inputDate').datetimepicker();
     });
     apllyClickEventOnCreateButton();
   });
@@ -85,7 +89,12 @@ const apllyClickEventOnCreateButton = function() {
     } else {
       const eventToAdd = EventFactory.createEvent(inputTitleVal, inputDescriptionVal,
           inputTypeVal, inputPicturePath, inputLocationVal, inputDateVal);
-      EventFactory.addEventToDB(eventToAdd);
+
+      try {
+        EventFactory.addEventToDB(eventToAdd);
+      } catch (error) {
+        log(error);
+      }
       alert('The event was added successfully');
       EventVisualizer.hideContentInContainer();
       EventVisualizer.displayDetailedPreviewHTML('#event-preview' + eventToAdd.id);
