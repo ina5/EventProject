@@ -1,5 +1,6 @@
 import eventsLocalStorage from './database.js';
 import * as EventVisualizer from './EventVisualizer.js';
+import * as EventFactory from './EventFactory';
 import * as $ from 'jquery';
 // Create new Object with different properties
 
@@ -13,6 +14,23 @@ const find = function(searchText, typeDd) {
   return eventsLocalStorage
       .filter((event) => event[typeDd].toLowerCase().includes(searchText.toLowerCase()));
 };
+
+const activateSearching = function() {
+  $('#searchDropDown').on('click', function(ev) {
+    const searchCriteria = ev.target.dataset.value;
+    const searchText = $('#searchString').val();
+    const foundEvents = find(searchText, searchCriteria);
+
+    if (foundEvents.length === 0) {
+      alert('No matches found!');
+    } else {
+      EventVisualizer.clearEventsOnCurrentTab();
+      EventVisualizer.displayEvents(foundEvents);
+    }
+  });
+};
+
 export {
   find,
+  activateSearching,
 };

@@ -15,7 +15,7 @@ const getRegularTypeIMG = function(type) {
     return '/images/culture.png';
   }
 
-  return 'Unknown event type.';
+  throw new Error('Unknown event type.');
 };
 
 const getBackgroundTypeIMG = function(type) {
@@ -35,7 +35,7 @@ const getBackgroundTypeIMG = function(type) {
     return '/images/culture-transparent.png';
   }
 
-  return 'Unknown event type.';
+  throw new Error('Unknown event type.');
 };
 
 export {

@@ -65,9 +65,11 @@ const showCreateEventButton = function () {
 
 const displayDetailedPreviewHTML = function (eventDivId) {
   $('#detailedPreviewDiv').remove();
+
   const eventID = +eventDivId.slice('#event-preview'.length);
   const currentEvent = EventFactory.getElementById(eventID);
   const humanReadableDateTime = DateManager.convertToHumanReadableDate(currentEvent.dateTime);
+
   const detailedPreviewDiv = $('<div>').attr('id', 'detailedPreviewDiv');
   const detailedButtonClose = $('<button>')
     .attr('type', 'button')
@@ -94,6 +96,7 @@ const displayDetailedPreviewHTML = function (eventDivId) {
   $('.container').append(detailedPreviewDiv);
   detailedPreviewDiv.append(detailedButtonClose, detailedTitle, detailedPicture,
     detailedLocation, detailedDateTime, detailedDescription);
+
   $('#detailedPreviewDiv').css({ 'background-image': `url(./..${EventTypeManager.getBackgroundTypeIMG(currentEvent.type)})`, 'background-size': 'cover' });
 
   $(document).on('click', '#detailedButton', function() {
@@ -113,27 +116,25 @@ const getEventPreviewHTML = function(event) {
   const divID = 'event-preview' + event.id;
 
   if (EventTypeManager.getRegularTypeIMG(event.type) === 'Unknown event type.') {
-    console.log(JSON.stringify(event));
+    return;
   }
   const imgPath = './..' + EventTypeManager.getRegularTypeIMG(event.type);
   const formattedDate = DateManager.convertToHumanReadableDate(event.dateTime);
   const startTime = event.dateTime.split(' ').slice(1)
     .join(' ');
   addOnClickEventOnShortPreview(`#${divID}`);
-  return `<div id="${divID}" class="event-preview">
-  <img src="${imgPath}">
-  <h2>${event.title}</h2>
-  <h3 class="event-preview-time">${formattedDate} ${startTime}</h3>
-  </div>`;
+
+  return $('<div>')
+      .attr('id', divID)
+      .addClass('event-preview')
+      .append($('<img>').attr('src', imgPath))
+      .append($('<h2>').text(event.title))
+      .append($('<h3>').addClass('event-preview-time').text(formattedDate + ' ' + startTime));
 };
 
 const includeEventInList = function (event) {
   const previewHTML = getEventPreviewHTML(event);
-  $('.event-list').append(`<li> ${previewHTML} </li>`)
-    .show();
-  /*   $('.event-list').click(function(e) {
-    console.log($(e.target));
-  }); */
+  $('.event-list').append($('<li>').html(previewHTML)).show();
 };
 
 const displayEvents = function (eventsToDisplay) {
@@ -162,6 +163,8 @@ const updateEventsOnTab = function (tab) {
 const displayEventsOnCurrentTab = function () {
   $('.topnav li').on('click', function () {
     makeTabsInactive();
+    console.log(this);
+    console.log($(this));
     makeTabActive(this);
 
     // update displayed events
