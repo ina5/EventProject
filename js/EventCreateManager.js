@@ -1,4 +1,3 @@
-import * as $ from 'jquery';
 import * as EventFactory from './EventFactory.js';
 import * as EventVisualizer from './EventVisualizer.js';
 
@@ -53,17 +52,16 @@ const createEventForm = function() {
     const labelLocation = createElementWithAppend('label', 'Location  ',
         'input-createEvent', '<input id="inputLocation">');
 
-    const inputDate = $('<input/>', {
-      id: 'inputDate',
-      type: 'datetime-local',
-      name: 'Choose a date  ',
-    });
-
+    const inputDate = $('<input>').attr('id', 'inputDate').attr('type', 'text');
+    
     const labelDate = createElementWithAppend('label', 'When  ',
-        'input-createEvent', inputDate);
+    'input-createEvent', inputDate);
     divCreateEvent
-        .append(headerText, text, labelTitle, labelCriteria, labelDescription, labelPicture, labelLocation, labelDate, btnCreateEvent);
-
+    .append(headerText, text, labelTitle, labelCriteria, labelDescription, labelPicture, labelLocation, labelDate, btnCreateEvent);
+    
+    $(function () {
+        $('#inputDate').datetimepicker();
+    });
     apllyClickEventOnCreateButton();
   });
 };
