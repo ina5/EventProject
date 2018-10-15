@@ -71,6 +71,7 @@ const displayEventInDetails = function() {
 */
 
 const displayDetailedPreviewHTML = function(eventDivId) {
+  $('#detailedPreviewDiv').remove();
   const eventID = +eventDivId.slice('#event-preview'.length);
   const currentEvent = EventFactory.getElementById(eventID);
 
@@ -125,7 +126,6 @@ const getEventPreviewHTML = function(event) {
   return `<div id="${divID}" class="event-preview">
   <img src="${imgPath}">
   <h2>${event.title}</h2>
-  
   <h3 class="event-preview-time">${formattedDate} ${startTime}</h3>
   </div>`;
 };
@@ -187,4 +187,5 @@ export {
   hideContentInContainer,
   hideCreateEventButton,
   showCreateEventButton,
+  displayDetailedPreviewHTML,
 };

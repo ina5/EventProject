@@ -126,7 +126,11 @@ const apllyClickEventOnCreateButton = function() {
 
       EventFactory.addEventToDB(eventToAdd);
       alert('The event was added successfully');
+      EventVisualizer.hideContentInContainer();
+      EventVisualizer.displayDetailedPreviewHTML('#event-preview' + eventToAdd.id);
+      EventVisualizer.showCreateEventButton();
     }
+
     // clearInputForms();
     // $('.container').find('.div-createEvent').remove();
   });
