@@ -2,6 +2,8 @@ import * as EventFactory from './EventFactory.js';
 import * as EventVisualizer from './EventVisualizer.js';
 import { log } from './logger.js';
 
+const MAX_TITLE_SIZE = 35;
+
 const createElementWithAppend = function(element, textToAdd, classToAdd, toAppend) {
   return $(`<${element}>`)
       .text(textToAdd)
@@ -73,6 +75,12 @@ const createEventForm = function() {
 const apllyClickEventOnCreateButton = function() {
   $('#btn-innerCreate').click(function() {
     const inputTitleVal = $('#inputTitle').val();
+
+    if (inputTitleVal.length > MAX_TITLE_SIZE) {
+      alert('The title is too long!');
+      return;
+    }
+
     const inputDescriptionVal = $('#inputDescription').val();
     const inputTypeVal = $('#inputType').val();
     const inputPicturePath = $('#inputPicture').val();
@@ -95,6 +103,7 @@ const apllyClickEventOnCreateButton = function() {
       } catch (error) {
         log(error);
       }
+      
       alert('The event was added successfully');
       EventVisualizer.hideContentInContainer();
       EventVisualizer.displayDetailedPreviewHTML('#event-preview' + eventToAdd.id);
