@@ -2,109 +2,74 @@ import * as $ from 'jquery';
 import * as EventFactory from './EventFactory.js';
 import * as EventVisualizer from './EventVisualizer.js';
 
-// CREATE BUTTON HERE
-const btnCreateEvent = $('<button></button>');
+const createElementWithAppend = function(element, textToAdd, classToAdd, toAppend) {
+    return $(`<${element}>`)
+    .text(textToAdd)
+    .addClass(classToAdd)
+    .append(toAppend);
+};
+const createElement = function(element, textToAdd, classToAdd) {
+    return $(`<${element}>`)
+    .text(textToAdd)
+    .addClass(classToAdd)
+};
 
 const createEventForm = function() {
-  $('#create-btn-main').click(function() {
+    const btnCreateEvent = createElement('button id="btn-innerCreate"', 
+        'Create', 'btn-createEvent').attr('type', 'button');
+
+    $('#create-btn-main').click(function() {
     EventVisualizer.hideContentInContainer();
     EventVisualizer.hideCreateEventButton();
-
-    // MAKE TABS INACTIVE
     EventVisualizer.makeTabsInactive();
 
-    // ATTACH CREATE EVENT FORM
     const divCreateEvent = $('.div-createEvent').empty().show();
 
-    // START CREATE NEW ELEMENTS
-    const text = $('<p></p>')
-        .text('Please fill in this form to create an event')
-        .addClass('paragraph-createEvent');
+    const text = createElement('p', 
+        'Please fill in this form to create an event', 
+        'paragraph-createEvent');
+    const headerText = createElement('h1', 'Create', 'header-createEvent');
+    const labelTitle = createElementWithAppend('label', 'Title  ',
+        'input-createEvent', '<input id="inputTitle">');
+    const labelCriteria = createElement('label', 'Choose a category  ',
+        'input-createEvent');
+    const selectCattegory = createElement('select id="inputType"', 'Category  ', 'category-createEvent');
 
-    const headerText = $('<h1></h1>').text('Create').css({
-      color: 'white',
-    });
-
-    // TITLE
-    const labelTitle = $('<label></label>')
-        .text('Title  ')
-        .addClass('input-createEvent');
-    $(labelTitle)
-        .append('<input id="inputTitle"></input>');
-
-    // CRITERIA
-    const labelCriteria = $('<label></label>')
-        .text('Choose a category  ')
-        .addClass('input-createEvent');
-    const selectCattegory = $('<select id="inputType"></select>')
-        .text('Category  ');
     const resultData = ['music', 'culture', 'sport', 'business'];
-
-    // CRITERIA  --- Drop Down element with a categories
-    $(document)
-        .ready(function() {
-          const myselect = selectCattegory;
-          $.each(resultData, function(index, key) {
-            myselect
-                .append($('<option></option>').val(key).html(key));
-          });
-        });
+    
+    const myselect = selectCattegory;
+    $.each(resultData, function(index, key) {
+    myselect
+        .append($('<option>').val(key).html(key));
+    });        
     labelCriteria.append(selectCattegory);
 
-    // DESCRIPTION
-    const labelDescription = $('<label></label>')
-        .text('Description  ');
-    labelDescription
-        .append('<input id="inputDescription"></input>')
-        .addClass('input-createEvent');
+    const labelDescription = createElementWithAppend('label', 'Description  ',
+        'input-createEvent', '<input id="inputDescription">');
+    
+    const labelPicture = createElementWithAppend('label', 'Picture path  ',
+        'input-createEvent', '<input id="inputPicture">');
 
-    // PICTURE PATH
-    const labelPicture = $('<label></label>')
-        .text('Picture path  ');
-    labelPicture
-        .append('<input id="inputPicture"></input>')
-        .addClass('input-createEvent');
+    const labelLocation = createElementWithAppend('label', 'Location  ', 
+        'input-createEvent', '<input id="inputLocation">');
 
-    // LOCATION
-    const labelLocation = $('<label></label>')
-        .text('Location  ');
-    labelLocation
-        .append('<input id="inputLocation"></input>')
-        .addClass('input-createEvent');
-
-    // DATE TIME
     const inputDate = $('<input/>', {
-      id: 'inputDate',
-      type: 'datetime-local',
-      name: 'Choose a date  ',
+    id: 'inputDate',
+    type: 'datetime-local',
+    name: 'Choose a date  ',
     });
 
-    const labelDate = $('<label></label>')
-        .text('When  ')
-        .addClass('input-createEvent');
-    labelDate.append(inputDate);
-
-    // BUTTON CREATE AN EVENT
-    btnCreateEvent.attr('type', 'button')
-        .text('Create')
-        .addClass('btn-createEvent');
-
-    apllyClickEventOnCreateButton();
-
-    // APPEND THE WHOLE ELEMENTS
+    const labelDate = createElementWithAppend('label', 'When  ',
+        'input-createEvent', inputDate);
     divCreateEvent
         .append(headerText, text, labelTitle, labelCriteria, labelDescription, labelPicture, labelLocation, labelDate, btnCreateEvent);
-    divCreateEvent.children().css({
-      'display': 'block',
-    });
-    $('.container')
-        .css('background-image', 'url("./../images/cosmos-background.jpg")');
-  });
+
+    apllyClickEventOnCreateButton();
+});
 };
 
 const apllyClickEventOnCreateButton = function() {
-  btnCreateEvent.click(function() {
-    // GET VALUES FROM THE INPUT
+    $('#btn-innerCreate').click(function() {
     const inputTitleVal = $('#inputTitle').val();
     const inputDescriptionVal = $('#inputDescription').val();
     const inputTypeVal = $('#inputType').val();
@@ -112,28 +77,27 @@ const apllyClickEventOnCreateButton = function() {
     const inputLocationVal = $('#inputLocation').val();
     const inputDateVal = $('#inputDate').val();
 
-    // VALIDATION
     if (!inputTitleVal ||
             !inputDescriptionVal ||
             !inputTypeVal ||
             !inputPicturePath ||
             !inputLocationVal ||
             !inputDateVal) {
-      alert('No valid data provided');
+        alert('No valid data provided');
     } else {
-      const eventToAdd = EventFactory.createEvent(inputTitleVal, inputDescriptionVal,
-          inputTypeVal, inputPicturePath, inputLocationVal, inputDateVal);
-
-      EventFactory.addEventToDB(eventToAdd);
-      alert('The event was added successfully');
-      EventVisualizer.hideContentInContainer();
-      EventVisualizer.displayDetailedPreviewHTML('#event-preview' + eventToAdd.id);
-      EventVisualizer.showCreateEventButton();
+    const eventToAdd = EventFactory.createEvent(inputTitleVal, inputDescriptionVal,
+    inputTypeVal, inputPicturePath, inputLocationVal, inputDateVal);
+    EventFactory.addEventToDB(eventToAdd);
+    alert('The event was added successfully');
+    EventVisualizer.hideContentInContainer();
+    EventVisualizer.displayDetailedPreviewHTML('#event-preview' + eventToAdd.id);
+    EventVisualizer.showCreateEventButton();
     }
-
-    // clearInputForms();
-    // $('.container').find('.div-createEvent').remove();
-  });
+});
 };
 
-export { createEventForm };
+export { 
+    createEventForm,
+    createElement,
+    createElementWithAppend,
+};

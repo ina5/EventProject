@@ -57,6 +57,7 @@ body {
 
 .container {
     border: 1px solid white;
+    background-image: url("./../images/cosmos-background.jpg");
 }
 
 .list {
@@ -97,6 +98,9 @@ body {
     max-height: 750px;
 }
 
+.div-createEvent label {
+    display: block;
+}
 
 .event-place {
     width: 650px;
@@ -198,6 +202,14 @@ ul {
 
 
 /* Button Create Style on Main Page*/
+.div-createEvent h1 {
+    color:white;
+}
+
+.div-createEvent > * {
+    display: block;
+}
+
 #create-btn-main {
     display: inline-block;
     padding: 14px 15px;
